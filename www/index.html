@@ -302,12 +302,6 @@
 				function success(entries) {
 					var path = window.localStorage.getItem("pathSD");
 					var jsonPath = path + "/categorie.js";
-					alert(JSON.stringify(entries[0]));
-					entries[0].getMetadata(function(metadata) {
-					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
-					alert("data "+metadata.modificationTime);
-					});
-					
 					var fileCategorieMancanti = [];		
 					$.getJSON(jsonPath, function( listaCategorie ) {
 						var fileCategorie = [];
@@ -506,7 +500,7 @@
 				} // close onGetFileFail
 
 				function onSetMetadataFileSuccess(fileEntry){
-					alert("file "+fileEntry.lastModifiedDate);				
+									
 					fileEntry.getMetadata(function(metadata) {
 					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
 					alert(JSON.stringify(fileEntry);
