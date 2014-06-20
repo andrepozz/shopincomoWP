@@ -87,6 +87,10 @@
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 		
 		}
+		
+		if (device.platform === "WinCE" || device.platform === "Win32NT") {
+		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+		}
 			
 	}, false);
 	
@@ -1002,6 +1006,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -1033,6 +1041,10 @@
 
 					if (device.platform === "iOS") {
 						fileEntry.setMetadata(onSetMetadataFileSuccess(fileEntry), onSetMetadataFileFail, { "com.apple.MobileBackup": 1});
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
+						onSetMetadataFileSuccess(fileEntry);
 					}
 
 					if (device.platform === "Android") {
@@ -1106,6 +1118,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -1137,6 +1153,10 @@
 
 					if (device.platform === "iOS") {
 						fileEntry.setMetadata(onSetMetadataFileSuccess(fileEntry), onSetMetadataFileFail, { "com.apple.MobileBackup": 1});
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
+						onSetMetadataFileSuccess(fileEntry);
 					}
 
 					if (device.platform === "Android") {
@@ -1323,6 +1343,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -1354,6 +1378,10 @@
 
 					if (device.platform === "iOS") {
 						fileEntry.setMetadata(onSetMetadataFileSuccess(fileEntry), onSetMetadataFileFail, { "com.apple.MobileBackup": 1});
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
+						onSetMetadataFileSuccess(fileEntry);
 					}
 
 					if (device.platform === "Android") {
@@ -1473,6 +1501,137 @@
 
 </div>
 <!-- /PAGE #setupNegozi -->
+
+<!-- PAGE #facebook -->
+	<div data-role="page" id="facebook">
+
+	<!-- /HEADER -->
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<h1></h1>
+	</div>
+	<!-- /HEADER -->
+	
+	<!-- CONTENT -->
+	<div role="main" class="ui-content" >
+	
+	<div id="fb-root"></div>
+	
+	<script>
+  
+	$( "#facebook" ).on( "pagebeforeshow", function() {	
+	
+	document.addEventListener("backbutton", onBackKeyDown, false);
+		
+	function onBackKeyDown(e) {
+	e.preventDefault();
+	}
+	
+	var	connectionStatus = navigator.onLine ? 'online' : 'offline';
+	if (connectionStatus == "offline")
+	{
+	$.mobile.changePage( "#index", { allowSamePageTransition:true } );
+	}
+	
+	$("h3.titoloCollegaFacebook").html(window.localStorage.getItem("collegaSetupTitolo")+" Facebook");
+	$("p.descrizioneCollegaFacebook").html(window.localStorage.getItem("collegaSetupDescrizione"));
+	
+	$("h2#h2skipFacebook").html(""+window.localStorage.getItem("noCollegaSocial")+"");
+	$("p#pskipFacebook").html(""+window.localStorage.getItem("continua")+"");
+	
+	FB.init({ appId: "771666006185274", nativeInterface: CDV.FB, useCachedDialogs: false });
+	
+	//GET LOGIN STATUS
+	FB.getLoginStatus(function(response) {
+	
+		//CONNESSO
+		if (response.status === 'connected') {
+		
+			FB.api('/me', function(response) {
+			$("h2#h2loginFacebook").html(""+window.localStorage.getItem("accountCollegato")+"");
+			$("p#ploginFacebook").html(""+response.name+"");
+			$("h2#h2skipFacebook").html(""+window.localStorage.getItem("prossimoPasso")+"");
+			$("p#pskipFacebook").html(""+window.localStorage.getItem("continua")+"");
+			});
+		}
+		//APP NON AUTORIZZATA
+		else if (response.status === 'not_authorized') {
+		$("h2#h2loginFacebook").html("Login Facebook");
+		$("p#ploginFacebook").html(""+window.localStorage.getItem("collegaSocial")+"");
+		} 
+		//NON CONNESSO
+		else {
+		$("h2#h2loginFacebook").html("Login Facebook");
+		$("p#ploginFacebook").html(""+window.localStorage.getItem("collegaSocial")+"");
+		}
+		
+	}, true);
+	
+	}); //ON "pageshow"
+	
+	$(document).on("click", 'a.facebook', function(){
+	
+	FB.login(function(response) {
+            
+		if (response.authResponse) {
+			
+			FB.api('/me', function(response) {
+			$("h2#h2loginFacebook").html(""+window.localStorage.getItem("accountCollegato")+"");
+			$("p#ploginFacebook").html(""+response.name+"");
+			$("a.facebook").attr('href', '#foursquare');
+			$("a.facebook").removeClass('facebook');
+			$("h2#h2skipFacebook").html(""+window.localStorage.getItem("prossimoPasso")+"");
+			$("p#pskipFacebook").html(""+window.localStorage.getItem("continua")+"");
+			var idFacebook = response.id;
+			sessionStorage.setItem("idFacebook", idFacebook);
+
+			$.ajax({
+			type: 'POST',
+			url: 'http://shopincomo.comune.como.it/ccn20/utentiSocial.php',
+			data: { idUtente: idFacebook, socialNetwork: 'Facebook'}
+			}).done(function( msg ) {
+			//alert(window.localStorage.getItem("postPubblicato"));
+			});	
+
+			});
+		}
+		else {
+            alert('not logged in');
+        }
+    },
+	{ scope: "email" }
+    );
+	
+	}); //ON "click"
+	
+</script>
+	
+	<h3 class="titoloCollegaFacebook"></h3>
+	<p class="descrizioneCollegaFacebook"></p>
+	
+	<ul data-role="listview" data-inset="true">
+		<li><a href="#" class="facebook" data-transition="slide">
+			<img src="img/collegaFacebook.png">
+			<h2 id="h2loginFacebook"></h2>
+			<p id="ploginFacebook"></p></a>
+		</li>
+		<li><a href="#foursquare" id="saltaAFoursquare" data-transition="slide">
+			<img src="img/skip.png">
+			<h2 id="h2skipFacebook"></h2>
+			<p id="pskipFacebook"></p></a>
+		</li>
+	</ul>
+	
+	</div>
+	<!-- CONTENT -->
+
+	<!-- FOOTER -->
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<h4></h4>
+	</div>
+	<!-- /FOOTER -->
+
+	</div>
+<!-- /PAGE #facebook -->
 
 <!-- PAGE #foursquare -->
 	<div data-role="page" id="foursquare">
