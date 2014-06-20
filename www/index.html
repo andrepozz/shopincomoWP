@@ -204,6 +204,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -270,6 +274,10 @@
 				function onGetDirectorySuccess(dirEntry){
 								
 						if (device.platform === "Android") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
 								
@@ -351,6 +359,10 @@
 
 								
 						if (device.platform === "Android") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
 								
@@ -437,6 +449,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -467,6 +483,10 @@
 
 					if (device.platform === "iOS") {
 						fileEntry.setMetadata(onSetMetadataFileSuccess(fileEntry), onSetMetadataFileFail, { "com.apple.MobileBackup": 1});
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataFileSuccess(fileEntry);
 					}
 
 					if (device.platform === "Android") {
@@ -624,7 +644,6 @@
   
 	$( "#lingue" ).on( "pagebeforeshow", function() {
 	
-	alert("sono nella pagina lingue");
 	
 	document.addEventListener("backbutton", onBackKeyDown, false);
 		
