@@ -117,7 +117,7 @@
 			$("ul.listaSocialNetwork").listview("refresh");	
 		}
 
-		
+		if (device.platform === "iOS" || device.platform === "Android") {
 		//FACEBOOK
 			FB.init({ appId: "771666006185274", nativeInterface: CDV.FB, useCachedDialogs: false });
 			//GET LOGIN STATUS
@@ -140,7 +140,7 @@
 				$("img.imageFacebook").attr("src", "img/facebookListbn.png");
 				}
 			}, true);
-		
+		}
 		//FOURSQUARE
 		var tokenFoursquare = window.localStorage.getItem("tokenFoursquare");
 	
