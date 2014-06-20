@@ -55,13 +55,11 @@
 	$(".closePopupUpdateDisponibili").html(""+window.localStorage.getItem("chiudi")+"");
 		
 	var lingua = window.localStorage.getItem("lingua");
-	alert("Lingua Home " + lingua);
 	if (lingua == null) {
 	
 			document.addEventListener("deviceready", function(){
 			if (device.platform === "WinCE" || device.platform === "Win32NT") {
-			alert("Sono nella piattaforma giusta");
-			window.location = "#lingue";
+			$( "#setupApplicazione" ).popup("open");
 			}
 			else{
 			$.mobile.changePage( "#lingue", { allowSamePageTransition:true, transition: "slide" } );
@@ -568,6 +566,11 @@
 	<div id="rigaBorsa_2">
 	</div>
 	
+	<div data-role="popup" id="setupApplicazione" data-dismissible="false" data-history="false">
+	<p class="headersetupApplicazione">Warning</p>
+    <p class="descrizionesetupApplicazione">Setup Applicazione Necessario / Application Setup</p>
+	<a href="#lingue" rel="external" class="ui-btn buttonUpdateDisponibili">SETUP</a>
+	</div>
 	
 	
 	<div data-role="popup" id="updateDisponibili" data-dismissible="false" data-history="false">
