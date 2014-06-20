@@ -302,6 +302,12 @@
 				function success(entries) {
 					var path = window.localStorage.getItem("pathSD");
 					var jsonPath = path + "/categorie.js";
+					alert(JSON.stringify(entries[0]));
+					entries[0].getMetadata(function(metadata) {
+					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
+					alert("data "+metadata.modificationTime);
+					});
+					
 					var fileCategorieMancanti = [];		
 					$.getJSON(jsonPath, function( listaCategorie ) {
 						var fileCategorie = [];
@@ -506,8 +512,6 @@
 					
 					localStorage.setItem("dataDownload", dataDownload );
 					
-					alert("data "+metadata.modificationTime);
-					alert(JSON.stringify(metadata));
 					var urlJSON = "http://shopincomo.comune.como.it/ccn20/JSONidEserciziUpdate.php?language="+localStorage.getItem("codLingua")+"&dataDownload="+dataDownload;
 						
 						$.ajax({
