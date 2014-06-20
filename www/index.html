@@ -611,7 +611,9 @@
 	
 	<script>
   
-	$( "#lingue" ).on( "pagebeforeshow", function() {	
+	$( "#lingue" ).on( "pagebeforeshow", function() {
+	
+	alert("sono nella pagina lingue");
 	
 	document.addEventListener("backbutton", onBackKeyDown, false);
 		
@@ -622,7 +624,7 @@
 	//LISTA LINGUE
 	$("ul#listaLingue").html("");
 		
-		$.getJSON("js/lingue.js", function( data ) {
+		$.getJSON("www/js/lingue.js", function( data ) {
 		
 			$.each(data, function(index, info) {
 			$("ul#listaLingue").append($("<li></li>",{"html":"<a href='#' class='lingua' id='" + info.idLingua + "' codiceLingua='"+info.codiceLingua+"' nomeLingua='"+index+"' data-transition='slide' ><img src='img/lingue/"+info.codiceLingua+".png' alt='Facebook' class='ui-li-icon ui-corner-none'>" + info.nomeLingua + "</a>" }));
