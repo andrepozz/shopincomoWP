@@ -509,7 +509,7 @@
 					alert("file "+fileEntry.lastModifiedDate);				
 					fileEntry.getMetadata(function(metadata) {
 					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
-					
+					alert(JSON.stringify(fileEntry);
 					localStorage.setItem("dataDownload", dataDownload );
 					
 					var urlJSON = "http://shopincomo.comune.como.it/ccn20/JSONidEserciziUpdate.php?language="+localStorage.getItem("codLingua")+"&dataDownload="+dataDownload;
