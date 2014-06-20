@@ -55,7 +55,7 @@
 	$(".closePopupUpdateDisponibili").html(""+window.localStorage.getItem("chiudi")+"");
 		
 	var lingua = window.localStorage.getItem("lingua");
-
+	alert("Lingua Home " + lingua);
 	if (lingua == null) {
 	
 			$.mobile.changePage( "#lingue", { allowSamePageTransition:true, transition: "slide" } );
@@ -791,6 +791,7 @@
 
 					//MEMORIZZA PATH
 					var directory = dirEntry.fullPath;
+					alert("Directory File " + directory);
 								
 						if (device.platform === "Android") {
 							var indexPath = directory.lastIndexOf("/");
