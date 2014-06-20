@@ -58,8 +58,8 @@
 	alert("Lingua Home " + lingua);
 	if (lingua == null) {
 			alert("Sono nel null lingua");
-			alert(device.platform);
-			alert(window.location.href);
+			alert("device platform " +device.platform);
+			alert("location "+window.location.href);
 			if (device.platform === "WinCE" || device.platform === "Win32NT") {
 			window.location.href = "#lingue";
 			}
