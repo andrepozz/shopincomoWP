@@ -505,8 +505,8 @@
 					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
 					
 					localStorage.setItem("dataDownload", dataDownload );
-					alert("file "+fileEntry.fullPath);
-					alert(metadata.toSource());
+					alert("file "+fileEntry.lastModifiedDate);
+					alert("data "+metadata.modificationTime);
 					alert(JSON.stringify(metadata));
 					var urlJSON = "http://shopincomo.comune.como.it/ccn20/JSONidEserciziUpdate.php?language="+localStorage.getItem("codLingua")+"&dataDownload="+dataDownload;
 						
