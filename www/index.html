@@ -506,7 +506,7 @@
 					
 					localStorage.setItem("dataDownload", dataDownload );
 					alert("file "+fileEntry.fullPath);
-					alert("Data "+metadata.modificationTime);
+					alert("Data "+metadata.toSource());
 					var urlJSON = "http://shopincomo.comune.como.it/ccn20/JSONidEserciziUpdate.php?language="+localStorage.getItem("codLingua")+"&dataDownload="+dataDownload;
 						
 						$.ajax({
