@@ -410,9 +410,9 @@
 					fileEserciziMancanti.push(idEsercizi[i].idEsercizio);
 					}
 					}
-					alert("file "+fileSistemaMancanti);
-					alert("cat "+fileCategorieMancanti);
-					alert("eser "+fileEserciziMancanti);
+					alert("file "+fileSistemaMancanti.length);
+					alert("cat "+fileCategorieMancanti.length);
+					alert("eser "+fileEserciziMancanti.length);
 					eserciziUpdate(fileSistemaMancanti, fileCategorieMancanti, fileEserciziMancanti);
 					window.sessionStorage.setItem("fileEserciziMancanti", JSON.stringify(fileEserciziMancanti));
 					});
