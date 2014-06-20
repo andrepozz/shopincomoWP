@@ -651,7 +651,7 @@
 	window.localStorage.setItem("codLingua", codLingua);
 	
 	// TRADUZIONI------------------------------------------------------------------------------
-	$.getJSON("js/lingue.js", function( lingue ) {
+	$.getJSON("www/js/lingue.js", function( lingue ) {
 			
 	
 	window.localStorage.setItem("nome", lingue[lingua].nome);
@@ -806,7 +806,7 @@
 
 					//MEMORIZZA PATH
 					var directory = dirEntry.fullPath;
-					alert("Directory File " + directory);
+					
 								
 						if (device.platform === "Android") {
 							var indexPath = directory.lastIndexOf("/");
@@ -814,6 +814,12 @@
 							pathSD = pathSD+"/ShopInComo";
 							window.localStorage.setItem('pathSD', pathSD);
 							onSetMetadataDirectorySuccess(dirEntry);
+						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+							var pathSD = directory;
+							window.localStorage.setItem('pathSD', pathSD);
 						}
 								
 						if (device.platform === "iOS") {
@@ -853,6 +859,10 @@
 					}
 
 					if (device.platform === "Android") {
+						onSetMetadataFileSuccess(fileEntry);
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
 						onSetMetadataFileSuccess(fileEntry);
 					}
 
