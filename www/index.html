@@ -64,7 +64,7 @@
 			alert("device platform " +device.platform);
 			alert("location "+window.location.href);
 			if (device.platform === "WinCE" || device.platform === "Win32NT") {
-			window.location.href = "#lingue";
+			window.location = "#lingue";
 			}
 			else{
 			$.mobile.changePage( "#lingue", { allowSamePageTransition:true, transition: "slide" } );
