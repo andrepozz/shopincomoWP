@@ -90,13 +90,11 @@
 		}
 		
 		if (device.platform === "Android") {
-
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-		
 		}
 		
 		if (device.platform === "WinCE" || device.platform === "Win32NT") {
-		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);		
+			watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
 		}
 			
 	}, false);
@@ -412,6 +410,9 @@
 					fileEserciziMancanti.push(idEsercizi[i].idEsercizio);
 					}
 					}
+					alert("file "+fileSistemaMancanti);
+					alert("cat "+fileCategorieMancanti);
+					alert("eser "+fileEserciziMancanti);
 					eserciziUpdate(fileSistemaMancanti, fileCategorieMancanti, fileEserciziMancanti);
 					window.sessionStorage.setItem("fileEserciziMancanti", JSON.stringify(fileEserciziMancanti));
 					});
