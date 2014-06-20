@@ -94,6 +94,30 @@
 		$("a.closePopup").html(window.localStorage.getItem("chiudi"));
 		
 		
+		if (device.platform === "Android") {
+			$("ul.listaSocialNetwork").html("");
+			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaFacebook" data-transition="slide"><img src="img/facebookList.png" alt="Facebook" class="imageFacebook ui-li-icon ui-corner-none">Facebook<p class="accountFacebook"></p></a></li>'));
+			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaFoursquare" data-transition="slide"><img src="img/foursquareList.png" alt="Foursquare" class="imageFoursquare ui-li-icon ui-corner-none">Foursquare<p class="accountFoursquare"></p></a></li>'));
+			$("ul.listaSocialNetwork").append($('<li><li><a href="#" class="collegaTwitter" data-transition="slide"><img src="img/twitterList.png" alt="Twitter" class="imageTwitter ui-li-icon ui-corner-none">Twitter<p class="accountTwitter"></p></a></li>'));
+			$("ul.listaSocialNetwork").listview("refresh");
+		}
+						
+		if (device.platform === "WinCE" || device.platform === "Win32NT") {
+			$("ul.listaSocialNetwork").html("");
+			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaFoursquare" data-transition="slide"><img src="img/foursquareList.png" alt="Foursquare" class="imageFoursquare ui-li-icon ui-corner-none">Foursquare<p class="accountFoursquare"></p></a></li>'));
+			$("ul.listaSocialNetwork").append($('<li><li><a href="#" class="collegaTwitter" data-transition="slide"><img src="img/twitterList.png" alt="Twitter" class="imageTwitter ui-li-icon ui-corner-none">Twitter<p class="accountTwitter"></p></a></li>'));
+			$("ul.listaSocialNetwork").listview("refresh");	
+		}
+								
+		if (device.platform === "iOS") {
+			$("ul.listaSocialNetwork").html("");
+			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaFacebook" data-transition="slide"><img src="img/facebookList.png" alt="Facebook" class="imageFacebook ui-li-icon ui-corner-none">Facebook<p class="accountFacebook"></p></a></li>'));
+			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaFoursquare" data-transition="slide"><img src="img/foursquareList.png" alt="Foursquare" class="imageFoursquare ui-li-icon ui-corner-none">Foursquare<p class="accountFoursquare"></p></a></li>'));
+			$("ul.listaSocialNetwork").append($('<li><li><a href="#" class="collegaTwitter" data-transition="slide"><img src="img/twitterList.png" alt="Twitter" class="imageTwitter ui-li-icon ui-corner-none">Twitter<p class="accountTwitter"></p></a></li>'));
+			$("ul.listaSocialNetwork").listview("refresh");	
+		}
+
+		
 		//FACEBOOK
 			FB.init({ appId: "771666006185274", nativeInterface: CDV.FB, useCachedDialogs: false });
 			//GET LOGIN STATUS
@@ -351,10 +375,7 @@
 		
 		</script>
 		
-		<ul data-role="listview" data-inset="true">
-			<li><a href="#" class="collegaFacebook" data-transition="slide"><img src="img/facebookList.png" alt="Facebook" class="imageFacebook ui-li-icon ui-corner-none">Facebook<p class="accountFacebook"></p></a></li>
-			<li><a href="#" class="collegaFoursquare" data-transition="slide"><img src="img/foursquareList.png" alt="Foursquare" class="imageFoursquare ui-li-icon ui-corner-none">Foursquare<p class="accountFoursquare"></p></a></li>
-			<li><a href="#" class="collegaTwitter" data-transition="slide"><img src="img/twitterList.png" alt="Twitter" class="imageTwitter ui-li-icon ui-corner-none">Twitter<p class="accountTwitter"></p></a></li>
+		<ul data-role="listview" class="listaSocialNetwork"data-inset="true">
 		</ul>
 		
 		<div data-role="popup" id="connectionOfflineSocial" data-dismissible="false" data-history="false">
@@ -397,8 +418,20 @@
 	
 	//LISTA LINGUE
 	$("ul#listaLingue").html("");
+	
+	if (device.platform === "iOS") {
+	var fileLingue = "js/lingue.js";
+	}
+
+	if (device.platform === "Android") {
+		var fileLingue = "js/lingue.js";
+	}
+					
+	if (device.platform === "WinCE" || device.platform === "Win32NT") {
+		var fileLingue = "www/js/lingue.js";
+	}
 		
-		$.getJSON("js/lingue.js", function( data ) {
+		$.getJSON(fileLingue, function( data ) {
 		
 			$.each(data, function(index, info) {
 			$("ul#listaLingue").append($("<li></li>",{"html":"<a href='#' class='lingua' id='" + info.idLingua + "' codiceLingua='"+info.codiceLingua+"' nomeLingua='"+index+"' data-transition='slide' ><img src='img/lingue/"+info.codiceLingua+".png' alt='Facebook' class='ui-li-icon ui-corner-none'>" + info.nomeLingua + "</a>" }));
@@ -430,7 +463,19 @@
 	
 	// TRADUZIONI------------------------------------------------------------------------------
 	
-		$.getJSON("js/lingue.js", function( lingue ) {
+	if (device.platform === "iOS") {
+		var fileLingue = "js/lingue.js";
+	}
+
+	if (device.platform === "Android") {
+		var fileLingue = "js/lingue.js";
+	}
+					
+	if (device.platform === "WinCE" || device.platform === "Win32NT") {
+		var fileLingue = "www/js/lingue.js";
+	}
+	
+	$.getJSON(fileLingue, function( lingue ) {
 			
 	
 	window.localStorage.setItem("nome", lingue[lingua].nome);
@@ -594,6 +639,12 @@
 							window.localStorage.setItem('pathSD', pathSD);
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+							var pathSD = directory;
+							window.localStorage.setItem('pathSD', pathSD);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -632,6 +683,10 @@
 					}
 
 					if (device.platform === "Android") {
+						onSetMetadataFileSuccess(fileEntry);
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
 						onSetMetadataFileSuccess(fileEntry);
 					}
 
@@ -771,6 +826,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -802,6 +861,10 @@
 
 					if (device.platform === "iOS") {
 						fileEntry.setMetadata(onSetMetadataFileSuccess(fileEntry), onSetMetadataFileFail, { "com.apple.MobileBackup": 1});
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
+						onSetMetadataFileSuccess(fileEntry);
 					}
 
 					if (device.platform === "Android") {
@@ -878,6 +941,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -912,6 +979,10 @@
 					}
 
 					if (device.platform === "Android") {
+						onSetMetadataFileSuccess(fileEntry);
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
 						onSetMetadataFileSuccess(fileEntry);
 					}
 
@@ -1095,6 +1166,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -1129,6 +1204,10 @@
 					}
 
 					if (device.platform === "Android") {
+						onSetMetadataFileSuccess(fileEntry);
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
 						onSetMetadataFileSuccess(fileEntry);
 					}
 
@@ -1298,6 +1377,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}	
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -1364,6 +1447,10 @@
 				function onGetDirectorySuccess(dirEntry){
 								
 						if (device.platform === "Android") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
 								
@@ -1445,6 +1532,10 @@
 
 								
 						if (device.platform === "Android") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
 								
@@ -1530,6 +1621,10 @@
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
 						}
+						
+						if (device.platform === "WinCE" || device.platform === "Win32NT") {
+							onSetMetadataDirectorySuccess(dirEntry);
+						}
 								
 						if (device.platform === "iOS") {
 							dirEntry.setMetadata(onSetMetadataDirectorySuccess(dirEntry), onSetMetadataDirectoryFail, { "com.apple.MobileBackup": 1});
@@ -1560,6 +1655,10 @@
 
 					if (device.platform === "iOS") {
 						fileEntry.setMetadata(onSetMetadataFileSuccess(fileEntry), onSetMetadataFileFail, { "com.apple.MobileBackup": 1});
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
+						onSetMetadataFileSuccess(fileEntry);
 					}
 
 					if (device.platform === "Android") {

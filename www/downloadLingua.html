@@ -87,6 +87,12 @@
 									window.localStorage.setItem('pathSD', pathSD);
 								}
 								
+								if (device.platform === "WinCE" || device.platform === "Win32NT") {
+									onSetMetadataDirectorySuccess(dirEntry);
+									var pathSD = directory;
+									window.localStorage.setItem('pathSD', pathSD);
+								}
+								
 								if (device.platform === "iOS") {
 									var pathSD = directory;
 									window.localStorage.setItem('pathSD', pathSD);

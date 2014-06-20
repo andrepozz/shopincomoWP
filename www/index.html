@@ -651,8 +651,20 @@
 	
 	//LISTA LINGUE
 	$("ul#listaLingue").html("");
+	
+	if (device.platform === "iOS") {
+		var fileLingue = "js/lingue.js";
+	}
+
+	if (device.platform === "Android") {
+		var fileLingue = "js/lingue.js";
+	}
+					
+	if (device.platform === "WinCE" || device.platform === "Win32NT") {
+		var fileLingue = "www/js/lingue.js";
+	}
 		
-		$.getJSON("www/js/lingue.js", function( data ) {
+		$.getJSON(fileLingue, function( data ) {
 		
 			$.each(data, function(index, info) {
 			$("ul#listaLingue").append($("<li></li>",{"html":"<a href='#' class='lingua' id='" + info.idLingua + "' codiceLingua='"+info.codiceLingua+"' nomeLingua='"+index+"' data-transition='slide' ><img src='img/lingue/"+info.codiceLingua+".png' alt='Facebook' class='ui-li-icon ui-corner-none'>" + info.nomeLingua + "</a>" }));
@@ -679,7 +691,20 @@
 	window.localStorage.setItem("codLingua", codLingua);
 	
 	// TRADUZIONI------------------------------------------------------------------------------
-	$.getJSON("www/js/lingue.js", function( lingue ) {
+	
+	if (device.platform === "iOS") {
+		var fileLingue = "js/lingue.js";
+	}
+
+	if (device.platform === "Android") {
+		var fileLingue = "js/lingue.js";
+	}
+					
+	if (device.platform === "WinCE" || device.platform === "Win32NT") {
+		var fileLingue = "www/js/lingue.js";
+	}
+	
+	$.getJSON(fileLingue, function( lingue ) {
 			
 	
 	window.localStorage.setItem("nome", lingue[lingua].nome);
