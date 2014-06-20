@@ -57,6 +57,9 @@
 	var lingua = window.localStorage.getItem("lingua");
 	alert("Lingua Home " + lingua);
 	if (lingua == null) {
+	
+			document.addEventListener("deviceready", function(){
+			
 			alert("Sono nel null lingua");
 			alert("device platform " +device.platform);
 			alert("location "+window.location.href);
@@ -66,6 +69,8 @@
 			else{
 			$.mobile.changePage( "#lingue", { allowSamePageTransition:true, transition: "slide" } );
 			}
+			
+			}, false);
 			
 	}
 	else
