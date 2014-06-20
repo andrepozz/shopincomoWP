@@ -58,8 +58,11 @@
 	alert("Lingua Home " + lingua);
 	if (lingua == null) {
 	
+			alert(device.platform);
+			alert(window.location.href);
 			if (device.platform === "WinCE" || device.platform === "Win32NT") {
 			window.location.href = "#lingue";
+			$.mobile.changePage
 			}
 			else{
 			$.mobile.changePage( "#lingue", { allowSamePageTransition:true, transition: "slide" } );
