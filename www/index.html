@@ -131,13 +131,13 @@
     }
 	
 	function onError(error) {
-		
+		alert(error.code);
 		navigator.geolocation.getCurrentPosition(onSuccess, onErrorTimeout,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : false});
 		
     }
 	
 	function onErrorTimeout(error) {
-		
+		alert(error.code);
 		console.log("Geolocation Error Timeout");
 		alert(""+window.localStorage.getItem("noLocalizzazione")+"");
 		var userLatitude = "45.80806";
@@ -147,6 +147,7 @@
 		window.sessionStorage.setItem("userLatitude", userLatitude);
 		window.sessionStorage.setItem("userLongitude", userLongitude);
 		window.sessionStorage.setItem("userAccuracy", userAccuracy);
+		alert(window.sessionStorage.getItem("userLatitude"));
 		var	connectionStatus = navigator.onLine ? 'online' : 'offline';
 		if (connectionStatus == "online" && window.sessionStorage.getItem("doneCheckUpdates") != "si")
 		{
