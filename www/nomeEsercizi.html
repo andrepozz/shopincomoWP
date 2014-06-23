@@ -429,6 +429,10 @@
 		if (device.platform === "iOS") {
 			window.location.href = "maps:q="+geoPosition+"";
 		}
+		
+		if (device.platform === "WinCE" || device.platform === "Win32NT") {
+			window.location.href = "maps:q="+geoPosition+"";
+		}
 	});
 	
 // CLICK TRANSLATE GOOGLE
