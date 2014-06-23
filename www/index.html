@@ -90,11 +90,11 @@
 		}
 		
 		if (device.platform === "Android") {
-		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+			navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 		}
 		
 		if (device.platform === "WinCE" || device.platform === "Win32NT") {
-			watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+			navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 		}
 			
 	}, false);
