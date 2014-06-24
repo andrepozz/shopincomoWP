@@ -629,6 +629,21 @@
 	
 	$(".titoloNavigazione").html(window.localStorage.getItem("portamiQui"));
 	$(".didascaliaSocial").html(window.localStorage.getItem("votaNegozio"));
+	
+	if (device.platform === "iOS" || device.platform === "Android") {
+		$("ul.listaSocial").html("");
+		$("ul.listaSocial").append($('<li id="buttonFacebook"><a href="#" class="votaFacebook" idEsercizio=""><img id="votaFacebook" src="img/collegaFacebook.png"><h2>Facebook</h2><p class="didascaliaSocial"></p></a></li>'));
+		$("ul.listaSocial").append($('<li id="buttonFoursquare"><a href="#popupCheckin" data-rel="popup" class="votaFoursquare" idEsercizio=""><img id="votaFoursquare" src=""><h2>Foursquare</h2><p class="didascaliaSocial"></p></a></li>'));
+		$("ul.listaSocial").append($('<li id="buttonTwitter"><a href="#" class="votaTwitter" idEsercizio=""><img id="votaTwitter" src=""><h2>Twitter</h2><p class="didascaliaSocial"></p></a></li>'));
+		$("ul.listaSocial").listview("refresh");
+	}
+	
+	if (device.platform === "WinCE" || device.platform === "Win32NT") {
+		$("ul.listaSocial").html("");
+		$("ul.listaSocial").append($('<li id="buttonFoursquare"><a href="#popupCheckin" data-rel="popup" class="votaFoursquare" idEsercizio=""><img id="votaFoursquare" src=""><h2>Foursquare</h2><p class="didascaliaSocial"></p></a></li>'));
+		$("ul.listaSocial").append($('<li id="buttonTwitter"><a href="#" class="votaTwitter" idEsercizio=""><img id="votaTwitter" src=""><h2>Twitter</h2><p class="didascaliaSocial"></p></a></li>'));
+		$("ul.listaSocial").listview("refresh");
+	}
 
 	
 	// CARICA FILE VETRINA
@@ -701,6 +716,7 @@
 		var	connectionStatus = navigator.onLine ? 'online' : 'offline';
 		
 		//FACEBOOK
+		if (device.platform === "iOS" || device.platform === "Android") {
 		FB.init({ appId: "771666006185274", nativeInterface: CDV.FB, useCachedDialogs: false });
 		//GET LOGIN STATUS
 		FB.getLoginStatus(function(response) {
@@ -723,6 +739,7 @@
 			$("ul.listaSocial").listview("refresh");
 			}
 		}, true);
+		}
 		
 		//FOURSQUARE
 		var tokenFoursquare = window.localStorage.getItem("tokenFoursquare");
@@ -1146,24 +1163,6 @@
 	</ul>
 	
 	<ul data-role="listview" data-inset="true" class="listaSocial">
-	<li id="buttonFacebook">
-	<a href="#" class="votaFacebook" idEsercizio=""><img id="votaFacebook" src="img/collegaFacebook.png">
-	<h2>Facebook</h2>
-	<p class="didascaliaSocial"></p>
-	</a>
-	</li>
-	<li id="buttonFoursquare">
-	<a href="#popupCheckin" data-rel="popup" class="votaFoursquare" idEsercizio=""><img id="votaFoursquare" src="">
-	<h2>Foursquare</h2>
-	<p class="didascaliaSocial"></p>
-	</a>
-	</li>
-	<li id="buttonTwitter">
-	<a href="#" class="votaTwitter" idEsercizio=""><img id="votaTwitter" src="">
-	<h2>Twitter</h2>
-	<p class="didascaliaSocial"></p>
-	</a>
-	</li>
 	</ul>
 	
 	<div data-role="popup" id="popupCheckin" data-theme="b">

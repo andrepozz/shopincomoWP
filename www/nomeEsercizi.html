@@ -289,7 +289,7 @@
 		
 //NAVIGATE BUTTON
 
-		$( ".directions" ).attr('geoPosition', esercizioLatitude+","+esercizioLongitude);
+		$( ".directions" ).attr('geoPosition', esercizioLatitude.toFixed(5)+","+esercizioLongitude.toFixed(5));
 		
 // DESCRIZIONE + TRANSLATE BUTTON
 		var codLingua = localStorage.getItem("codLingua");
