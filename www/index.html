@@ -173,6 +173,8 @@
 	$("div#rigaBorsa_1").append($("<div class='blocco_sx'><a href='eserciziVicini.html' rel='external' data-transition='slide'><img src='img/ricercaDistanza_"+estensioneImmagine+".png'></a></div><div class='blocco_dx'><a href='categorie.html' rel='external' data-transition='slide'><img src='img/ricercaCategoria_"+estensioneImmagine+".png'></a></div>"));
 	$("div#rigaBorsa_2").append($("<div class='blocco_sx'><a href='nomeEsercizi.html' rel='external' data-transition='slide'><img src='img/ricercaNegozio_"+estensioneImmagine+".png'></a></div><div class='blocco_dx'><a href='brandEsercizi.html' rel='external' data-transition='slide'><img src='img/ricercaBrand_"+estensioneImmagine+".png'></a></div>"));
 	
+	$('div.indexFooter').append('<div data-role="navbar" class="indexNavbar"><ul><li><a href="#" class="qrCode"><img src="img/qrcode.png"></a></li><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div>');
+    $('div.indexNavbar').navbar();
 	
 	if (device.platform === "Android" || device.platform === "iOS") {
 			$("ul.listaSocialNetwork").html("");
@@ -630,14 +632,7 @@
 	<!-- /CONTENT -->
 
 	<!-- FOOTER -->
-	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar">
-			<ul>
-			<li><a href="#" class="qrCode"><img src="img/qrcode.png"></a></li>
-			<li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li>
-			<li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li>
-			</ul>
-		</div><!-- /navbar -->
+	<div data-role="footer" class="indexFooter" data-position="fixed" data-tap-toggle="false">
 	</div>
 	<!-- /FOOTER -->
 	
@@ -2533,24 +2528,6 @@
 	</ul>
 	
 	<ul data-role="listview" data-inset="true" class="listaSocial">
-	<li id="buttonFacebook">
-	<a href="#" class="votaFacebook" idEsercizio=""><img id="votaFacebook" src="img/collegaFacebook.png">
-	<h2>Facebook</h2>
-	<p class="didascaliaSocial"></p>
-	</a>
-	</li>
-	<li id="buttonFoursquare">
-	<a href="#popupCheckin" data-rel="popup" class="votaFoursquare" idEsercizio=""><img id="votaFoursquare" src="">
-	<h2>Foursquare</h2>
-	<p class="didascaliaSocial"></p>
-	</a>
-	</li>
-	<li id="buttonTwitter">
-	<a href="#" class="votaTwitter" idEsercizio=""><img id="votaTwitter" src="">
-	<h2>Twitter</h2>
-	<p class="didascaliaSocial"></p>
-	</a>
-	</li>
 	</ul>
 	
 	<div data-role="popup" id="popupCheckin" data-theme="b">
