@@ -70,8 +70,6 @@
 	
     <icon gap:platform="webos" src="res/icons/webos/icon-64.png" />
     <icon gap:platform="winphone" src="res/icons/windows-phone/icon-48.png" />
-	<icon gap:platform="winphone" src="res/icons/windows-phone/icon-62-tile.png" />
-	<icon gap:platform="winphone" src="res/icons/windows-phone/icon-173-tile.png" />
     <icon gap:platform="winphone" gap:role="background" src="res/icons/windows-phone/icon-173.png" />
     <gap:splash gap:density="ldpi" gap:platform="android" src="res/screen/android/screen-ldpi-portrait.png" />
     <gap:splash gap:density="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-portrait.png" />
