@@ -131,13 +131,11 @@
     }
 	
 	function onError(error) {
-		alert(error.code);
 		navigator.geolocation.getCurrentPosition(onSuccess, onErrorTimeout,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : false});
 		
     }
 	
 	function onErrorTimeout(error) {
-		alert(error.code);
 		console.log("Geolocation Error Timeout");
 		alert(""+window.localStorage.getItem("noLocalizzazione")+"");
 		var userLatitude = "45.80806";
@@ -173,8 +171,14 @@
 	$("div#rigaBorsa_1").append($("<div class='blocco_sx'><a href='eserciziVicini.html' rel='external' data-transition='slide'><img src='img/ricercaDistanza_"+estensioneImmagine+".png'></a></div><div class='blocco_dx'><a href='categorie.html' rel='external' data-transition='slide'><img src='img/ricercaCategoria_"+estensioneImmagine+".png'></a></div>"));
 	$("div#rigaBorsa_2").append($("<div class='blocco_sx'><a href='nomeEsercizi.html' rel='external' data-transition='slide'><img src='img/ricercaNegozio_"+estensioneImmagine+".png'></a></div><div class='blocco_dx'><a href='brandEsercizi.html' rel='external' data-transition='slide'><img src='img/ricercaBrand_"+estensioneImmagine+".png'></a></div>"));
 	
+	if (device.platform === "Android" || device.platform === "iOS") {
 	$('div.indexFooter').append('<div data-role="navbar" class="indexNavbar"><ul><li><a href="#" class="qrCode"><img src="img/qrcode.png"></a></li><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div>');
     $('div.indexNavbar').navbar();
+	}
+	if (device.platform === "WinCE" || device.platform === "Win32NT") {
+	$('div.indexFooter').append('<div data-role="navbar" class="indexNavbar"><ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div>');
+    $('div.indexNavbar').navbar();	
+	}
 	
 	if (device.platform === "Android" || device.platform === "iOS") {
 			$("ul.listaSocialNetwork").html("");
