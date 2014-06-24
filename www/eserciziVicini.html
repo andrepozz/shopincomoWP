@@ -781,7 +781,7 @@
 		
 //NAVIGATE BUTTON
 
-		$( ".directions" ).attr('geoPosition', esercizioLatitude+","+esercizioLongitude);
+		$( ".directions" ).attr('geoPosition', parseFloat(esercizioLatitude).toFixed(5)+","+parseFloat(esercizioLongitude).toFixed(5));
 		
 // DESCRIZIONE + TRANSLATE BUTTON
 		var codLingua = localStorage.getItem("codLingua");
@@ -936,6 +936,10 @@
 		}
 		if (device.platform === "iOS") {
 			window.location.href = "maps:q="+geoPosition+"";
+		}
+		
+		if (device.platform === "WinCE" || device.platform === "Win32NT") {
+			window.location.href = "maps:"+geoPosition+"";
 		}
 	});
 	
