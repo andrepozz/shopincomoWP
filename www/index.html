@@ -198,9 +198,11 @@
 	$("div#rigaBorsa_2").append($("<div class='blocco_sx'><a href='nomeEsercizi.html' rel='external' data-transition='slide'><img src='img/ricercaNegozio_"+estensioneImmagine+".png'></a></div><div class='blocco_dx'><a href='brandEsercizi.html' rel='external' data-transition='slide'><img src='img/ricercaBrand_"+estensioneImmagine+".png'></a></div>"));
 	
 	document.addEventListener("deviceready", function(){
-	$('.indexFooter').html("");
+	
 	if (device.platform === "Android" || device.platform === "iOS") {
-	$('div.indexNavbar').html('<ul><li><a href="#" class="qrCode"><img src="img/qrcode.png"></a></li><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul>');
+	$('.indexFooter').html("");
+	var footerNavbar = $('<div data-role="navbar"><ul><li><a href="#" class="qrCode"><img src="img/qrcode.png"></a></li><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div>').appendTo('.indexFooter');
+    $('.indexFooter').append(footerNavbar).trigger('create');
 	}
 	if (device.platform === "WinCE" || device.platform === "Win32NT") {
 	$('.indexFooter').html("");
