@@ -81,10 +81,11 @@
 	//CHECK GEOLOCATION
 	
 	var watchID = null;
-	var options = { maximumAge: 1500, timeout: 10000, enableHighAccuracy: true };
 	
 	document.addEventListener("deviceready", function(){
-		
+	
+		var options = { maximumAge: 1500, timeout: 10000, enableHighAccuracy: true };
+	
 		if (device.platform === "iOS") {
 			watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
 		}
@@ -94,7 +95,7 @@
 		}
 		
 		if (device.platform === "WinCE" || device.platform === "Win32NT") {
-			navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+			watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
 		}
 			
 	}, false);
