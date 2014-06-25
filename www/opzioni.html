@@ -1704,7 +1704,16 @@
 							else if(data.length == 0 && (fileEserciziMancanti.length != 0 || fileSistemaMancanti.length != 0 || fileCategorieMancanti.length != 0)){
 								var numeroAggiornamenti = parseInt(fileEserciziMancanti.length)+parseInt(fileSistemaMancanti.length)+parseInt(fileCategorieMancanti.length);
 								$("p.countUpdates").html(numeroAggiornamenti+" "+window.localStorage.getItem("aggiornamentiDisponibili")+"");
-								$( "div#update" ).html( $("<a href='#' class='ui-btn updateDatabase'>UPDATE</a>" ));
+								
+								
+								if (device.platform === "iOS" || device.platform === "Android") {
+									$( "div#update" ).html( $("<a href='#' class='ui-btn updateDatabase'>UPDATE</a>" ));
+								}
+								
+								if (device.platform === "WinCE" || device.platform === "Win32NT") {
+									$( "div#update" ).html( $("<a href='aggiornaDatabase.html' rel='external' class='ui-btn'>UPDATE</a>" ));
+								}
+								
 								$.mobile.loading( "hide" );
 							}
 							else {
