@@ -132,7 +132,14 @@
     }
 	
 	function onError(error) {
-		navigator.geolocation.getCurrentPosition(onSuccess, onErrorTimeout,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : false});
+		
+		if (device.platform === "iOS" || device.platform === "Android") {
+			navigator.geolocation.getCurrentPosition(onSuccess, onErrorTimeout,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : false});
+		}
+		
+		if (device.platform === "WinCE" || device.platform === "Win32NT") {
+			watchID = navigator.geolocation.watchPosition(onSuccess, onErrorTimeout, {maximumAge: 1500, timeout: 20000, enableHighAccuracy : true});
+		}
 		
     }
 	
