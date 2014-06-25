@@ -543,6 +543,9 @@
 				function onSetMetadataFileSuccess(fileEntry){
 									
 					fileEntry.getMetadata(function(metadata) {
+					var time = new Date();
+					var time = time.getTime();
+					alert(time);
 					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
 					localStorage.setItem("dataDownload", dataDownload );
 					
