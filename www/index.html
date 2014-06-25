@@ -141,7 +141,23 @@
 		}
 		
 		if (device.platform === "WinCE" || device.platform === "Win32NT") {			
-			navigator.geolocation.getCurrentPosition(onSuccess, onErrorTimeout,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : true});
+				console.log("Geolocation Error Timeout");
+				alert(""+window.localStorage.getItem("noLocalizzazione")+"");
+				var userLatitude = "45.80806";
+				var userLongitude = "9.08518";
+				var userAccuracy = "0";
+	
+			window.sessionStorage.setItem("userLatitude", userLatitude);
+			window.sessionStorage.setItem("userLongitude", userLongitude);
+			window.sessionStorage.setItem("userAccuracy", userAccuracy);
+			var	connectionStatus = navigator.onLine ? 'online' : 'offline';
+			if (connectionStatus == "online" && window.sessionStorage.getItem("doneCheckUpdates") != "si")
+			{
+				checkUpdates();
+			}
+			else{
+			$.mobile.loading( "hide" );
+			}
 		}
 		
     }
