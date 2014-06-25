@@ -197,21 +197,21 @@
 	$("div#rigaBorsa_1").append($("<div class='blocco_sx'><a href='eserciziVicini.html' rel='external' data-transition='slide'><img src='img/ricercaDistanza_"+estensioneImmagine+".png'></a></div><div class='blocco_dx'><a href='categorie.html' rel='external' data-transition='slide'><img src='img/ricercaCategoria_"+estensioneImmagine+".png'></a></div>"));
 	$("div#rigaBorsa_2").append($("<div class='blocco_sx'><a href='nomeEsercizi.html' rel='external' data-transition='slide'><img src='img/ricercaNegozio_"+estensioneImmagine+".png'></a></div><div class='blocco_dx'><a href='brandEsercizi.html' rel='external' data-transition='slide'><img src='img/ricercaBrand_"+estensioneImmagine+".png'></a></div>"));
 	
-
+	document.addEventListener("deviceready", function(){
+	
 	if (device.platform === "Android" || device.platform === "iOS") {
-			$("ul.listaSocialNetwork").html("");
-			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaFacebook" data-transition="slide"><img src="img/facebookList.png" alt="Facebook" class="imageFacebook ui-li-icon ui-corner-none">Facebook<p class="accountFacebook"></p></a></li>'));
-			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaFoursquare" data-transition="slide"><img src="img/foursquareList.png" alt="Foursquare" class="imageFoursquare ui-li-icon ui-corner-none">Foursquare<p class="accountFoursquare"></p></a></li>'));
-			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaTwitter" data-transition="slide"><img src="img/twitterList.png" alt="Twitter" class="imageTwitter ui-li-icon ui-corner-none">Twitter<p class="accountTwitter"></p></a></li>'));
-			$("ul.listaSocialNetwork").listview("refresh");
+	$('#index').append('<div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div></div>').trigger( "create" ); 	
 	}
-						
 	if (device.platform === "WinCE" || device.platform === "Win32NT") {
-			$("ul.listaSocialNetwork").html("");
-			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaFoursquare" data-transition="slide"><img src="img/foursquareList.png" alt="Foursquare" class="imageFoursquare ui-li-icon ui-corner-none">Foursquare<p class="accountFoursquare"></p></a></li>'));
-			$("ul.listaSocialNetwork").append($('<li><a href="#" class="collegaTwitter" data-transition="slide"><img src="img/twitterList.png" alt="Twitter" class="imageTwitter ui-li-icon ui-corner-none">Twitter<p class="accountTwitter"></p></a></li>'));
-			$("ul.listaSocialNetwork").listview("refresh");	
-	}	
+	//$('.indexFooter').html("");
+	//var footerNavbar = $('<div data-role="navbar"><ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div>').appendTo('.indexFooter');
+    //$('.indexFooter').append(footerNavbar).navbar(); 	
+	
+	$('#index').append('<div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" rel="external" data-transition="flip"><img src="img/info.png"></a></li></ul></div></div>').trigger( "create" );
+	
+	}
+	}, false);
+
 	
 	}
 	
@@ -543,9 +543,6 @@
 				function onSetMetadataFileSuccess(fileEntry){
 									
 					fileEntry.getMetadata(function(metadata) {
-					var time = new Date();
-					var time = time.getTime();
-					alert(time);
 					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
 					localStorage.setItem("dataDownload", dataDownload );
 					
@@ -641,7 +638,7 @@
 	
 	<div data-role="popup" id="setupApplicazione" data-dismissible="false" data-history="false">
 	<p class="headersetupApplicazione">Warning</p>
-    <p class="descrizionesetupApplicazione">Setup Applicazione Necessario /<br /> App Setup Needed</p>
+    <p class="descrizionesetupApplicazione">Setup Applicazione Necessario / Application Setup</p>
 	<a href="#lingue" class="ui-btn buttonsetupApplicazione">SETUP</a>
 	</div>
 	
@@ -657,14 +654,6 @@
 	<!-- /CONTENT -->
 
 	<!-- FOOTER -->
-	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
-		<div data-role="navbar">
-			<ul>
-			<li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li>
-			<li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li>
-			</ul>
-		</div><!-- /navbar -->
-	</div>
 	<!-- /FOOTER -->
 	
 </div><!-- /PAGE #index -->
@@ -3081,7 +3070,7 @@
 		
 	</script>
 	
-<ul id="credits" data-role="listview" data-inset="true">
+<ul id="creditsList" data-role="listview" data-inset="true">
     <li>
         <img src="img/politecnico.png">
 		<h2>Politecnico di Milano - DEIB</h2>
