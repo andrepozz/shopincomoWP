@@ -683,7 +683,14 @@
 			}
 			if(error.code==3){
 				  // timeout
-				  watchID = navigator.geolocation.watchPosition(onSuccess, onErrorPosition,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : false});
+				if (device.platform === "iOS" || device.platform === "Android") {
+					watchID = navigator.geolocation.watchPosition(onSuccess, onErrorPosition,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : false});
+				}
+				
+				if (device.platform === "WinCE" || device.platform === "Win32NT") {
+					watchID = navigator.geolocation.watchPosition(onSuccess, onErrorPosition,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : true});
+				}
+				  
 			}
 			
 		}

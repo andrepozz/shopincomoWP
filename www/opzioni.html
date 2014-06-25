@@ -934,9 +934,6 @@
 			fileSystem.root.getDirectory(directory, {create: true, exclusive: false}, onGetDirectorySuccess, onGetDirectoryFail);
 
 				function onGetDirectorySuccess(dirEntry){
-
-					//MEMORIZZA PATH
-					var directory = dirEntry.fullPath;
 								
 						if (device.platform === "Android") {
 							onSetMetadataDirectorySuccess(dirEntry);
