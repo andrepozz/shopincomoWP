@@ -139,6 +139,7 @@
 		
 		if (device.platform === "WinCE" || device.platform === "Win32NT") {
 			alert("Sono QUI");
+			var watchID = null;
 			watchID = navigator.geolocation.watchPosition(onSuccess, onErrorTimeout, {maximumAge: 1500, timeout: 20000, enableHighAccuracy : true});
 		}
 		
