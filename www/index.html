@@ -199,12 +199,10 @@
 	
 	
 	if (device.platform === "Android" || device.platform === "iOS") {
-	$('div.indexNavbar ul').html("");
-	$('div.indexNavbar ul').append('<li><a href="#" class="qrCode"><img src="img/qrcode.png"></a></li><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li>');
+	$('div.indexNavbar').html('<ul><li><a href="#" class="qrCode"><img src="img/qrcode.png"></a></li><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul>');
 	}
 	if (device.platform === "WinCE" || device.platform === "Win32NT") {
-	$('div.indexNavbar ul').html("");
-	$('div.indexNavbar ul').append('<li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li>');	
+	$('div.indexNavbar').html('<ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul>');	
 	}
 	
 	
@@ -666,11 +664,6 @@
 	<!-- FOOTER -->
 	<div data-role="footer" class="indexFooter" data-position="fixed" data-tap-toggle="false">
 	<div data-role="navbar" class="indexNavbar">
-	<ul>
-	<li></li>
-	<li></li>
-	<li></li>
-	</ul>
 	</div>
 	</div>
 	<!-- /FOOTER -->
