@@ -1390,9 +1390,9 @@
 	function downloadVetrineInterval() {
 	
 	var lastDownload = new Date();
-	var lastDownload = time.getTime();
+	var lastDownload = lastDownload.getTime();
 	
-	window.sessionStorage.setItem('lastDownload', lastDownload);
+	window.localStorage.setItem('lastDownload', lastDownload);
 	
 	var start = window.sessionStorage.getItem('start');
 	

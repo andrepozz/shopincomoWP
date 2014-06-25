@@ -630,8 +630,8 @@
 							if(numElementiError == 0) {
 							
 									var lastDownload = new Date();
-									var lastDownload = time.getTime();
-									window.sessionStorage.setItem('lastDownload', lastDownload);
+									var lastDownload = lastDownload.getTime();
+									window.localStorage.setItem('lastDownload', lastDownload);
 								
 									$("li.vetrine").html("<img class='iconaTipologia' src='img/downloadEsercizi.png'> UPDATE "+window.localStorage.getItem('esercizi')+"");
 									$("li.vetrine").css("color","white");
