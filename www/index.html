@@ -545,9 +545,7 @@
 					}
 					
 					if (device.platform === "WinCE" || device.platform === "Win32NT") {
-						alert("Last "+localStorage.getItem("lastDownload"));
 						var dataDownload = Math.round(localStorage.getItem("lastDownload")/ 1000);
-						alert("Data "+dataDownload);
 					}
 					
 					
@@ -564,6 +562,7 @@
 						}).done(function(response){
 							alert("Update "+response.length);
 							if (response.length == 0 && fileEserciziMancanti.length == 0 && fileSistemaMancanti.length == 0 && fileCategorieMancanti.length == 0) {
+								localStorage.setItem("numeroAggiornamenti", 0);
 								//alert("NO aggiornamenti disponibili");
 								//$("p.countUpdates").html(""+window.localStorage.getItem("statusDatabase")+"");
 								$.mobile.loading( "hide" );
