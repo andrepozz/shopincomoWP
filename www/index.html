@@ -546,7 +546,7 @@
 					
 					if (device.platform === "WinCE" || device.platform === "Win32NT") {
 						alert("Last "+localStorage.getItem("lastDownload"));
-						var dataDownload = Date.parse(localStorage.getItem("lastDownload")) / 1000;
+						var dataDownload = Math.round(localStorage.getItem("lastDownload")/ 1000);
 						alert("Data "+dataDownload);
 					}
 					

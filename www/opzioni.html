@@ -1723,7 +1723,16 @@
 								var countUpdates = data.length;
 								var updates = countUpdates+fileEserciziMancanti.length+fileSistemaMancanti.length+fileCategorieMancanti.length;
 								$("p.countUpdates").html(updates+" "+window.localStorage.getItem("aggiornamentiDisponibili")+"");
-								$( "div#update" ).html( $("<a href='#' class='ui-btn updateDatabase'>UPDATE</a>" ));
+								
+								if (device.platform === "iOS" || device.platform === "Android") {
+									$( "div#update" ).html( $("<a href='#' class='ui-btn updateDatabase'>UPDATE</a>" ));
+								}
+								
+								if (device.platform === "WinCE" || device.platform === "Win32NT") {
+									alert("ciao");
+									$( "div#update" ).html( $("<a href='aggiornaDatabase.html' rel='external' class='ui-btn'>UPDATE</a>" ));
+								}
+								
 								$.mobile.loading( "hide" );
 								});
 							}
