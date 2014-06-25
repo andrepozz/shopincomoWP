@@ -1126,6 +1126,11 @@
 	
 	function downloadVetrineInterval() {
 	
+	var lastDownload = new Date();
+	var lastDownload = time.getTime();
+	
+	window.sessionStorage.setItem('lastDownload', lastDownload);
+	
 	var start = window.sessionStorage.getItem('start');
 	
 	$.ajax({	
@@ -1676,7 +1681,14 @@
 				function onSetMetadataFileSuccess(fileEntry){
 										
 					fileEntry.getMetadata(function(metadata) {
-					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
+					
+					if (device.platform === "iOS" || device.platform === "Android") {
+						var dataDownload = Date.parse(metadata.modificationTime) / 1000;
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
+						var dataDownload = Date.parse(localStorage.getItem("lastDownload")) / 1000;
+					}
 
 					
 					localStorage.setItem("dataDownload", dataDownload );

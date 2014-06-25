@@ -608,6 +608,10 @@
 						numElementi = parseInt(numElementi)-1;							
 								if(numElementi == 0) {
 								
+									var lastDownload = new Date();
+									var lastDownload = time.getTime();
+									window.sessionStorage.setItem('lastDownload', lastDownload);
+									
 									$("li.vetrine").html("<img class='iconaTipologia' src='img/downloadEsercizi.png'> UPDATE "+window.localStorage.getItem('esercizi')+"");
 									$("li.vetrine").css("color","white");
 									$("li.vetrine").css("background","#00CC00");
@@ -624,6 +628,10 @@
 							numElementiError = parseInt(numElementiError)-1;							
 							
 							if(numElementiError == 0) {
+							
+									var lastDownload = new Date();
+									var lastDownload = time.getTime();
+									window.sessionStorage.setItem('lastDownload', lastDownload);
 								
 									$("li.vetrine").html("<img class='iconaTipologia' src='img/downloadEsercizi.png'> UPDATE "+window.localStorage.getItem('esercizi')+"");
 									$("li.vetrine").css("color","white");
