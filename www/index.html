@@ -200,11 +200,9 @@
 	document.addEventListener("deviceready", function(){
 	
 	if (device.platform === "Android" || device.platform === "iOS") {
-	var footer = $('.indexFooter');
-	var navBar = $('div', {
-		'data-role':'navbar',
-		'html':'<ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul>'
-	}).appendTo(footer).navbar();
+	$('.indexFooter').html("");
+	var footerNavbar = $('<div data-role="navbar"><ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div>').appendTo('.indexFooter');
+    $('.indexFooter').append(footerNavbar).navbar(); 	
 	}
 	if (device.platform === "WinCE" || device.platform === "Win32NT") {
 	$('.indexFooter').html("");
