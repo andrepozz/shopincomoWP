@@ -200,13 +200,9 @@
 	document.addEventListener("deviceready", function(){
 	
 	if (device.platform === "Android" || device.platform === "iOS") {
-	$('#index').append('<div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div></div>').trigger( "create" ); 	
+	$('#index').append('<div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="#" class="qrCode"><img src="img/qrcode.png"></a></li><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div></div>').trigger( "create" ); 	
 	}
-	if (device.platform === "WinCE" || device.platform === "Win32NT") {
-	//$('.indexFooter').html("");
-	//var footerNavbar = $('<div data-role="navbar"><ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div>').appendTo('.indexFooter');
-    //$('.indexFooter').append(footerNavbar).navbar(); 	
-	
+	if (device.platform === "WinCE" || device.platform === "Win32NT") {	
 	$('#index').append('<div data-role="footer" data-position="fixed"><div data-role="navbar"><ul><li><a href="opzioni.html" rel="external" data-transition="slide"><img src="img/opzioni.png"></a></li><li><a href="#credits" data-transition="flip"><img src="img/info.png"></a></li></ul></div></div>').trigger( "create" );
 	
 	}
@@ -543,7 +539,16 @@
 				function onSetMetadataFileSuccess(fileEntry){
 									
 					fileEntry.getMetadata(function(metadata) {
-					var dataDownload = Date.parse(metadata.modificationTime) / 1000;
+					
+					if (device.platform === "iOS" || device.platform === "Android") {
+						var dataDownload = Date.parse(metadata.modificationTime) / 1000;
+					}
+					
+					if (device.platform === "WinCE" || device.platform === "Win32NT") {
+						var dataDownload = Date.parse(localStorage.getItem("lastDownload")) / 1000;
+					}
+					
+					
 					localStorage.setItem("dataDownload", dataDownload );
 					
 					var urlJSON = "http://shopincomo.comune.como.it/ccn20/JSONidEserciziUpdate.php?language="+localStorage.getItem("codLingua")+"&dataDownload="+dataDownload;
@@ -1384,6 +1389,11 @@
 	
 	function downloadVetrineInterval() {
 	
+	var lastDownload = new Date();
+	var lastDownload = time.getTime();
+	
+	window.sessionStorage.setItem('lastDownload', lastDownload);
+	
 	var start = window.sessionStorage.getItem('start');
 	
 	$.ajax({	
@@ -1538,7 +1548,22 @@
 							$("li.downloadVetrine").html("download vetrine <img src='img/downloadok.png'>");
 							$("li.downloadVetrine").css("color","#00CC00");	
 							$("div.progressBar").css("background","#00CC00");
-							$("p.downloadCompleteVetrina").html("<a href='#facebook' class='ui-btn' data-transition='slide'>"+window.localStorage.getItem("continua")+"</a>");
+							
+							
+							if (device.platform === "iOS") {
+								$("p.downloadCompleteVetrina").html("<a href='#facebook' class='ui-btn' data-transition='slide'>"+window.localStorage.getItem("continua")+"</a>");
+							}
+					
+							if (device.platform === "WinCE" || device.platform === "Win32NT") {
+								$("p.downloadCompleteVetrina").html("<a href='#foursquare' class='ui-btn' data-transition='slide'>"+window.localStorage.getItem("continua")+"</a>");
+							}
+
+							if (device.platform === "Android") {
+								$("p.downloadCompleteVetrina").html("<a href='#facebook' class='ui-btn' data-transition='slide'>"+window.localStorage.getItem("continua")+"</a>");
+							}
+							
+							
+							//$("p.downloadCompleteVetrina").html("<a href='#facebook' class='ui-btn' data-transition='slide'>"+window.localStorage.getItem("continua")+"</a>");
 							}
 							else if(countError == parseInt(iterationError)*50) {
 							
