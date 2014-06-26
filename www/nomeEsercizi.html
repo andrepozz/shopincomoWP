@@ -533,7 +533,7 @@
 	latitudeFacebook = window.sessionStorage.getItem("userLatitude");
 	longitudeFacebook = window.sessionStorage.getItem("userLongitude");
 	nomeEsercizio = $("h3.nomeEsercizio").html();
-	var userFacebook = sessionStorage.getItem("idFacebook");
+	var userFacebook = localStorage.getItem("idFacebook");
 	var descrizioneFacebook;
 	if (sessionStorage.getItem('descrizioneEsercizio') != null){ descrizioneFacebook = sessionStorage.getItem('descrizioneEsercizio')};
 	FB.ui(
@@ -596,7 +596,7 @@
 		latitudeFoursquare = window.sessionStorage.getItem("userLatitude");
 		longitudeFoursquare = window.sessionStorage.getItem("userLongitude");
 		nomeEsercizio = $("h3.nomeEsercizio").html();
-		var userFoursquare = sessionStorage.getItem("idFoursquare");
+		var userFoursquare = localStorage.getItem("idFoursquare");
 		
 		//var idUserFoursquare = window.localStorage.getItem("idUserFoursquare");
 					
@@ -621,7 +621,7 @@
 		longitudeTwitter = window.sessionStorage.getItem("userLongitude");
 		urlEsercizio = "http://shopincomo.comune.como.it/it/node/"+idEsercizio;
 		nomeEsercizio = $("h3.nomeEsercizio").html();
-		var userTwitter = sessionStorage.getItem("idTwitter");
+		var userTwitter = localStorage.getItem("idTwitter");
 		
 		var tokenTwitter = window.localStorage.getItem("twitterToken");		
 		var tokenTwitterSecret = window.localStorage.getItem("twitterVerifier");			
