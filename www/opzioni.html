@@ -607,7 +607,6 @@
 	}
 	
 	$("h3.titoloDownloadFunzionalita").html(window.localStorage.getItem("downloadFunzionalita"));
-	$("ul.downloadList").html("");
 	$("ul.downloadList").append($('<li class="'+window.localStorage.getItem("nomiEsercizi")+'"><img class="iconaTipologia" src="img/downloadnome.png"> DOWNLOAD '+window.localStorage.getItem("nomiEsercizi")+'... <img src="img/download.gif"></li>'));
 	$("ul.downloadList").append($('<li class="brand"><img class="iconaTipologia" src="img/downloadbrand.png"> DOWNLOAD brand... <img src="img/download.gif"></li>'));
 	$("ul.downloadList").append($('<li class="'+window.localStorage.getItem("brandEsercizi")+'"><img class="iconaTipologia" src="img/downloadbrandEsercizi.png"> DOWNLOAD '+window.localStorage.getItem("brandEsercizi")+'... <img src="img/download.gif"></li>'));
@@ -1108,7 +1107,6 @@
 		var numeroBlocchiDownload = Math.floor(totaleEsercizi/50);
 		var widthBlocchiDownload = 100/numeroBlocchiDownload;
 		for (i=1; i<=numeroBlocchiDownload; i++) {
-		$("div.progressBar").html("");
 		$("div.progressBar").append("<div class='"+i+"' style='width:"+widthBlocchiDownload.toFixed(2)+"%; height:40px; float:left'></div>");
 		}
 		
