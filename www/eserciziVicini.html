@@ -60,9 +60,18 @@
 		function onBackKeyDown(e) {
 		e.preventDefault();
 		}
+	document.addEventListener("deviceready", function(){
+	
+	if (device.platform === "iOS" || device.platform === "Android") {
+		var height = $('[data-role="content"]').height(getRealContentHeight());
+		var actualHeight = height.context.activeElement.clientHeight;
+		$('#mapEsercizi').css('height', actualHeight);
+	}
 				
-	var height = $('.ui-content').height();
-	$('#mapEsercizi').css('height', height);
+	if (device.platform === "WinCE" || device.platform === "Win32NT") {
+		var height = $('.ui-content').height();
+		$('#mapEsercizi').css('height', height);
+	}
 	
 
 	var mapEsercizi;
@@ -466,7 +475,7 @@
 	});
 	
 	
-	
+	}, false);
 	</script>
 	
 	</div><!-- /content -->
