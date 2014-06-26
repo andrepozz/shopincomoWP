@@ -206,7 +206,7 @@
 		}
 		
 		$.each(eserciziSort, function(index, info) {
-		markerEsercizio = L.marker([info.latEsercizio, info.lonEsercizio], {icon: markerIcon}).bindPopup(info.nomeEsercizio);
+		markerEsercizio = L.marker([info.latEsercizio, info.lonEsercizio], {icon: markerIcon}).bindPopup("<a href='#vetrinaMappa' class='esercizio' idEsercizio='" + info.idEsercizio + "' data-transition='slide' ><img src='img/categorie/"+idCategoriaIcon+"'>"+info.nomeEsercizio+"</a>");
 		markersVicini.addLayer(markerEsercizio);
 		});
 		
