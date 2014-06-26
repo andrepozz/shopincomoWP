@@ -121,6 +121,8 @@
     var userLongitude = position.coords.longitude;
 	var userAccuracy = position.coords.accuracy;
 	
+	alert(userLatitude);
+	
 	window.sessionStorage.setItem("userLatitude", userLatitude);
 	window.sessionStorage.setItem("userLongitude", userLongitude);
 	window.sessionStorage.setItem("userAccuracy", userAccuracy);
@@ -560,7 +562,6 @@
 							data: {language: localStorage.getItem("codLingua"), dataDownload: dataDownload},
 							timeout: 15000
 						}).done(function(response){
-							alert("Update "+response.length);
 							if (response.length == 0 && fileEserciziMancanti.length == 0 && fileSistemaMancanti.length == 0 && fileCategorieMancanti.length == 0) {
 								localStorage.setItem("numeroAggiornamenti", 0);
 								//alert("NO aggiornamenti disponibili");
