@@ -609,7 +609,7 @@
 								if(numElementi == 0) {
 								
 									var lastDownload = new Date();
-									var lastDownload = time.getTime();
+									var lastDownload = lastDownload.getTime();
 									window.sessionStorage.setItem('lastDownload', lastDownload);
 									
 									$("li.vetrine").html("<img class='iconaTipologia' src='img/downloadEsercizi.png'> UPDATE "+window.localStorage.getItem('esercizi')+"");
