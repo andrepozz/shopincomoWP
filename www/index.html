@@ -623,6 +623,26 @@
 	
 	//FINE TIMEOUT UPDATES
 	
+	//ON "click"
+	$(document).on("click", 'a.qrCode', function(){
+	
+	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+	
+	scanner.scan( function (result) {
+		
+		var url = result.text;
+		var match = url.match(/it\/content\/(\d+)/);
+		if (match) {
+			idEsercizio = match[1];
+			$.mobile.changePage( "#vetrinaMappa", { allowSamePageTransition:true} );
+			
+		} // END MATCH
+		// FINE SUCCESS SCANNER
+	},function (error) { 
+        console.log("Scanning failed: ", error); 
+	}); //END SCANNER
+	
+	}); //ON "click"
 
 	
 	$(document).on("click", 'a.closePopupUpdateDisponibili', function(){
