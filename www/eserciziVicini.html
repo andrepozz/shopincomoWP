@@ -60,6 +60,7 @@
 		function onBackKeyDown(e) {
 		e.preventDefault();
 		}
+	document.addEventListener("deviceready", function(){
 	
 	if (device.platform === "iOS" || device.platform === "Android") {
 		var height = $('[data-role="content"]').height(getRealContentHeight());
@@ -71,7 +72,7 @@
 		var height = $('.ui-content').height();
 		$('#mapEsercizi').css('height', height);
 	}
-	
+	}, false);
 
 	var mapEsercizi;
 	var userLatitudeVicini;
