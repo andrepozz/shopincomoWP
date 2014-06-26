@@ -60,20 +60,28 @@
 		function onBackKeyDown(e) {
 		e.preventDefault();
 		}
-	document.addEventListener("deviceready", function(){
 	
-	if (device.platform === "iOS" || device.platform === "Android") {
-		var height = $('[data-role="content"]').height(getRealContentHeight());
-		var actualHeight = height.context.activeElement.clientHeight;
-		$('#mapEsercizi').css('height', actualHeight);
-	}
-				
-	if (device.platform === "WinCE" || device.platform === "Win32NT") {
-		var height = $('.ui-content').height();
-		$('#mapEsercizi').css('height', height);
-	}
+	//var height = $('.ui-content').naturalHeight();
 	
+	var screen = $.mobile.getScreenHeight();
 
+	var header = $(".ui-header").hasClass("ui-header-fixed") ? $(".ui-header").outerHeight()  - 1 : $(".ui-header").outerHeight();
+	var footer = $(".ui-footer").hasClass("ui-footer-fixed") ? $(".ui-footer").outerHeight() - 1 : $(".ui-footer").outerHeight();
+
+	/* content div has padding of 1em = 16px (32px top+bottom). This step
+	   can be skipped by subtracting 32px from content var directly. */
+	var contentCurrent = $(".ui-content").outerHeight() - $(".ui-content").height();
+
+	var content = screen - header - footer - contentCurrent;
+
+	$(".ui-content").height(content);
+
+	
+	//var actualHeight = height.context.activeElement.clientHeight;
+	$('#mapEsercizi').css('height', content);
+	 
+	//alert("height " +content);
+	
 	var mapEsercizi;
 	var userLatitudeVicini;
 	var userLongitudeVicini;
@@ -115,7 +123,10 @@
 	var path = window.localStorage.getItem("pathSD");
 	var jsonPositionDir = path + "/position.js";
 	//var jsonPositionDir = "js/position.js";
-			
+		
+	
+	alert("latitude " +window.sessionStorage.getItem("userLatitude"));
+	
 	//CHECK GEOLOCATION
 	if(window.sessionStorage.getItem("userLatitude") == null) {
 	
@@ -472,7 +483,7 @@
 	});
 	
 	
-	}, false);
+	
 	</script>
 	
 	</div><!-- /content -->
