@@ -206,7 +206,7 @@
 		}
 		
 		$.each(eserciziSort, function(index, info) {
-		markerEsercizio = L.marker([info.latEsercizio, info.lonEsercizio], {icon: markerIcon}).bindPopup("<a href='#vetrinaMappa' class='esercizio' idEsercizio='" + info.idEsercizio + "' data-transition='slide' ><img src='img/categorie/"+idCategoriaIcon+"'>"+info.nomeEsercizio+"</a>");
+		markerEsercizio = L.marker([info.latEsercizio, info.lonEsercizio], {icon: markerIcon}).bindPopup(info.nomeEsercizio);
 		markersVicini.addLayer(markerEsercizio);
 		});
 		
@@ -856,7 +856,15 @@
 		
 		$(".distanzaEsercizio").html("");
 		
-		watchID = navigator.geolocation.watchPosition(onSuccess, onErrorPosition, options);
+		if (device.platform === "iOS" || device.platform === "Android") {
+			var options = { maximumAge: 1500, timeout: 10000, enableHighAccuracy: true };
+			watchID = navigator.geolocation.watchPosition(onSuccess, onErrorPosition, options);
+		}
+		
+		if (device.platform === "WinCE" || device.platform === "Win32NT") {
+			var options = { maximumAge: 1500, timeout: 30000, enableHighAccuracy: false };
+			watchID = navigator.geolocation.watchPosition(onSuccess, onErrorPosition, options);
+		}
 		
 // FUNCTION SUCCESS WATCH POSITION
 
@@ -933,7 +941,7 @@
 				}
 				
 				if (device.platform === "WinCE" || device.platform === "Win32NT") {
-					watchID = navigator.geolocation.watchPosition(onSuccess, onErrorPosition,{maximumAge: 1500, timeout: 20000, enableHighAccuracy : true});
+					console.log("no position");
 				}
 			}
 			
